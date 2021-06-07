@@ -42,3 +42,7 @@ nodes.yml -> playbook for nodes tier
 ```
 
 ## Getting Started
+
+```
+ansible-playbook -i inventory/inventory_production master.yml --tags "selinux disable"
+```

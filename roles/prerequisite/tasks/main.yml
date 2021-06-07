@@ -1,3 +1,72 @@
 - name: Say HEY
   debug:
     msg: "HEY"
+
+- name: Add IP and DNS record in /etc/host file
+  lineinfile:
+    path: /etc/hosts
+    line: "{{item.0}}"
+    state: present
+  tags:
+    - dns records
+  with_together:
+    - "{{ip_dns_host_file}}"
+
+- name: Disable SELinux
+  selinux:
+    state: disabled
+  tags:
+    - selinux disable
+
+- name: Create kubernetes.repo file
+  file:
+    path: /etc/yum.repos.d/kubernetes.repo
+    state: touch
+    owner: root
+    group: root
+    mode: '0644'
+  tags: 
+    - create kubernetes repo file
+
+- name: Insert configuration in kubernetes.repo file
+  blockinfile:
+    path: /etc/yum.repos.d/kubernetes.repo
+    block: |
+      [kubernetes]
+       name=Kubernetes
+       baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+       enabled=1
+       gpgcheck=1
+       repo_gpgcheck=1
+       gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+  tags:
+    - repo content
+
+- name: Update all packages
+  yum:
+    name: '*'
+    state: latest
+  tags: update all packages
+
+- name: Install Kubeadm and Docker
+  yum: 
+    name: "{{item.0}}"
+    state: latest
+  with_together:
+    - "{{packages}}"
+  tags: install packages
+
+- name: Enable docker systemd
+  systemd:
+    name: docker
+    enabled: yes
+    state: started
+  tags: start docker
+
+- name: Enable kubelet systemd
+  systemd:
+    name: kubelet
+    enabled: yes
+    state: started
+  tags: start kubelet
+
