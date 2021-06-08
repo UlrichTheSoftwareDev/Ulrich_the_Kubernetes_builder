@@ -70,3 +70,6 @@
     state: started
   tags: start kubelet
 
+- name: Disable swap
+  shell: "swapoff -a"
+  tags: disable swap

@@ -1,0 +1,31 @@
+- name: Say HEY
+  debug:
+    msg: "HEY"
+
+- name: Add IP and DNS record in /etc/host file
+  lineinfile:
+    path: /etc/hosts
+    line: "{{item.0}}"
+    state: present
+  tags:
+    - dns records
+  with_together:
+    - "{{ip_dns_host_file}}"
+
+- name: Disable SELinux
+  selinux:
+    state: disabled
+  tags:
+    - selinux disable
+
+- name: Create kubernetes.repo file
+  file:
+    path: '/etc/yum.repo.d/kubernetes.repo'
+   # path: /home/sacha/toto
+    state: touch
+    owner: root
+    group: root
+    mode: '0644'
+  tags: 
+    - create kubernetes repo file
+
