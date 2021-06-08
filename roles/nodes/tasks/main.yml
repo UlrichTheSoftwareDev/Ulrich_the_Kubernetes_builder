@@ -1,0 +1,9 @@
+- name: Say HEY
+  debug:
+    msg: "HEY"
+
+- name: Join the worker node to the kubernetes cluster
+  shell: "{{join_kubernetes_master}}"
+  tags:
+    - join master 
+

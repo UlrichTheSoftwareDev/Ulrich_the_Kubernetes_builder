@@ -1,0 +1,8 @@
+ip_dns_host_file :
+  - master 10.200.0.2
+  - node1 10.200.0.3
+  - node2 10.200.0.4
+
+packages:
+  - kubeadm
+  - docker

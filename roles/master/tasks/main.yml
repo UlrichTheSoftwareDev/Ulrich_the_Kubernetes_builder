@@ -1,0 +1,41 @@
+- name: Say HEY
+  debug:
+    msg: "HEY"
+
+- name: Kube init
+  shell: "kubeadm init"
+  register: init_result
+  tags:
+    - kube init
+
+- name: Show init result
+  debug:
+    msg: init_result
+
+- name: Create directory root for kubernetes
+  file:
+    path: /root/.kube
+    state: directory
+  tags:
+    - directory root
+
+- name: CP admin conf to .kube config
+  shell: "cp -i /etc/kubernetes/admin.conf /root/.kube.config"
+  tags:
+    - cp admin conf
+
+- name: Chown kube config
+  file:
+    path: /root/.kube
+    state: directory
+    recurse: yes
+    owner: root
+    group: root
+  tags:
+    - chown kube config
+
+- name: Get weavenet
+  shell: "export kubever=$(kubectl version | base64 | tr -d '\n') && kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+  tags:
+    - get weavenet 
+
