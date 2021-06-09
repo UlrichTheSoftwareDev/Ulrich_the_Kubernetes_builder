@@ -45,4 +45,9 @@ nodes.yml -> playbook for nodes tier
 
 ```
 ansible-playbook -i inventory/inventory_production master.yml --tags "selinux disable"
+
+ansible-playbook -i inventory/inventory_production nodes.yml --step --start-at-task="Install Kubeadm and Docker"
+
+ansible-playbook -i inventory/inventory_production master.yml --tags "start kubelet"
+
 ```
