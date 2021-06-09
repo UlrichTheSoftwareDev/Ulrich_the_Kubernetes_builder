@@ -1,6 +1,6 @@
 - name: Say HEY
   debug:
-    msg: "HEY"
+    msg: "HEY ! welcome to the master playbook !"
 
 - name: Kube init
   shell: "kubeadm init"
