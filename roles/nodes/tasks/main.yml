@@ -1,9 +1,11 @@
 - name: Say HEY
   debug:
-    msg: "HEY"
+    msg: "HEY ! welcome to the nodes playbook ! "
 
 - name: Join the worker node to the kubernetes cluster
   shell: "{{join_kubernetes_master}}"
+  args:
+    executable: /bin/bash
   tags:
     - join master 
 
