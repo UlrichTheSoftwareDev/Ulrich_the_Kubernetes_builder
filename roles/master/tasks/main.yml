@@ -10,7 +10,7 @@
 
 - name: Show init result
   debug:
-    msg: init_result
+    var: init_result
 
 - name: Create directory root for kubernetes
   file:
@@ -35,7 +35,7 @@
     - chown kube config
 
 - name: Get weavenet
-  shell: "export kubever=$(kubectl version | base64 | tr -d '\n') && kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+  shell: "export kubever=$(kubectl version | base64 | tr -d '\n') && kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version=$kubever"
   tags:
     - get weavenet 
 

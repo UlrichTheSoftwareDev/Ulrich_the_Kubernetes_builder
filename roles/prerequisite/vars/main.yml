@@ -1,8 +1,8 @@
 ip_dns_host_file :
-  - master 10.200.0.2
-  - node1 10.200.0.3
-  - node2 10.200.0.4
+  - master 192.168.0.126
+  - node1 192.168.0.104
+  - node2 192.168.0.91
 
 packages:
   - kubeadm
-  - docker
+  - docker-ce
