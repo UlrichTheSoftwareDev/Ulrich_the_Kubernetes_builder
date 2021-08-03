@@ -20,7 +20,7 @@
     - directory root
 
 - name: CP admin conf to .kube config
-  shell: "cp -i /etc/kubernetes/admin.conf /root/.kube.config"
+  shell: "cp -i /etc/kubernetes/admin.conf /root/.kube/config"
   tags:
     - cp admin conf
 
