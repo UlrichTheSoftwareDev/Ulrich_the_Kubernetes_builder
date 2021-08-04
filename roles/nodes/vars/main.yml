@@ -1,2 +1,2 @@
-join_kubernetes_master: "kubeadm join 192.168.0.115:6443 --token h6x94j.xa0hkdl21ptpkual --discovery-token-ca-cert-hash sha256:be9db7d9db8ffcaf6a9c69402d6c5a0a80c6aeb20bbcc1de211063fb57865c40"
+join_kubernetes_master: "kubeadm join 192.168.0.81:6443 --token lzh4vw.ulk7ujk70y6s0zzb --discovery-token-ca-cert-hash sha256:5d5caab08f6bae0d70a374eee8744743e562bab67c9f0f3b00d14d598c053413"
 
