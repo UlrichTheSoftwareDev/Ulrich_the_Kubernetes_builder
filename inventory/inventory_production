@@ -1,6 +1,6 @@
 [master]
-vm1
+master
 
 [nodes]
-vm2
-vm3
+node1
+node2

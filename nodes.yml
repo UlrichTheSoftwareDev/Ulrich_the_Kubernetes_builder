@@ -2,5 +2,5 @@
   remote_user: root
   gather_facts: False
   roles:
-     - prerequisite
+#     - prerequisite
      - nodes
